@@ -71,6 +71,9 @@ void DestroyString(const void* s) {
 
 ExplicitlyConstructed<std::string> fixed_address_empty_string;
 
+const std::string& GetEmptyStringAlreadyInited() {
+    return fixed_address_empty_string.get();
+}
 
 static bool InitProtobufDefaultsImpl() {
   fixed_address_empty_string.DefaultConstruct();

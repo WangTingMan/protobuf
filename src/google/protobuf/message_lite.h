@@ -143,15 +143,8 @@ class ExplicitlyConstructed {
   } union_;
 };
 
-// Default empty string object. Don't use this directly. Instead, call
-// GetEmptyString() to get the reference.
-PROTOBUF_EXPORT extern ExplicitlyConstructed<std::string>
-    fixed_address_empty_string;
 
-
-PROTOBUF_EXPORT inline const std::string& GetEmptyStringAlreadyInited() {
-  return fixed_address_empty_string.get();
-}
+PROTOBUF_EXPORT const std::string& GetEmptyStringAlreadyInited();
 
 PROTOBUF_EXPORT size_t StringSpaceUsedExcludingSelfLong(const std::string& str);
 
