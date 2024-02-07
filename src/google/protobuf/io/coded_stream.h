@@ -1451,7 +1451,11 @@ inline std::pair<uint32_t, bool> CodedInputStream::ReadTagWithCutoffNoLastTag(
   // If tag == 0 we want to return { 0, false } so the following overflow is intended.
   // We use __builtin_add_overflow to appease the sub-overflow UB sanitizer.
   uint32_t tag_minus_one;
+#ifdef _MSC_VER
+  tag_minus_one = tag - 1;
+#else
   __builtin_add_overflow(tag, -1, &tag_minus_one);
+#endif
   return std::make_pair(tag, tag_minus_one < cutoff);
 }
 

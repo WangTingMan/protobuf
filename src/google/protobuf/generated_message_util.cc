@@ -68,10 +68,6 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ExplicitlyConstructedArenaString
         fixed_address_empty_string{};  // NOLINT
 
-const std::string& GetEmptyStringAlreadyInited() {
-    return fixed_address_empty_string.get();
-}
-
 PROTOBUF_CONSTINIT std::atomic<bool> init_protobuf_defaults_state{false};
 static bool InitProtobufDefaultsImpl() {
   fixed_address_empty_string.DefaultConstruct();

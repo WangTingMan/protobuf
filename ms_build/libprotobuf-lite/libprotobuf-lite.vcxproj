@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)..\..\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\..\src;$(ProjectDir)..\..\config;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -147,20 +147,23 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\google\protobuf\any_lite.cc" />
     <ClCompile Include="..\..\src\google\protobuf\arena.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\arenastring.cc" />
     <ClCompile Include="..\..\src\google\protobuf\extension_set.cc" />
     <ClCompile Include="..\..\src\google\protobuf\generated_enum_util.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\generated_message_table_driven_lite.cc" />
     <ClCompile Include="..\..\src\google\protobuf\generated_message_util.cc" />
     <ClCompile Include="..\..\src\google\protobuf\implicit_weak_message.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\inlined_string_field.cc" />
     <ClCompile Include="..\..\src\google\protobuf\io\coded_stream.cc" />
     <ClCompile Include="..\..\src\google\protobuf\io\io_win32.cc" />
     <ClCompile Include="..\..\src\google\protobuf\io\strtod.cc" />
     <ClCompile Include="..\..\src\google\protobuf\io\zero_copy_stream.cc" />
     <ClCompile Include="..\..\src\google\protobuf\io\zero_copy_stream_impl.cc" />
     <ClCompile Include="..\..\src\google\protobuf\io\zero_copy_stream_impl_lite.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\map.cc" />
     <ClCompile Include="..\..\src\google\protobuf\message_lite.cc" />
     <ClCompile Include="..\..\src\google\protobuf\parse_context.cc" />
     <ClCompile Include="..\..\src\google\protobuf\repeated_field.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\repeated_ptr_field.cc" />
     <ClCompile Include="..\..\src\google\protobuf\stubs\bytestream.cc" />
     <ClCompile Include="..\..\src\google\protobuf\stubs\common.cc" />
     <ClCompile Include="..\..\src\google\protobuf\stubs\int128.cc" />
@@ -184,6 +187,7 @@
     <ClInclude Include="..\..\src\google\protobuf\generated_message_table_driven_lite.h" />
     <ClInclude Include="..\..\src\google\protobuf\generated_message_util.h" />
     <ClInclude Include="..\..\src\google\protobuf\implicit_weak_message.h" />
+    <ClInclude Include="..\..\src\google\protobuf\inlined_string_field.h" />
     <ClInclude Include="..\..\src\google\protobuf\io\coded_stream.h" />
     <ClInclude Include="..\..\src\google\protobuf\io\coded_stream_inl.h" />
     <ClInclude Include="..\..\src\google\protobuf\io\io_win32.h" />
@@ -191,9 +195,11 @@
     <ClInclude Include="..\..\src\google\protobuf\io\zero_copy_stream.h" />
     <ClInclude Include="..\..\src\google\protobuf\io\zero_copy_stream_impl.h" />
     <ClInclude Include="..\..\src\google\protobuf\io\zero_copy_stream_impl_lite.h" />
+    <ClInclude Include="..\..\src\google\protobuf\map.h" />
     <ClInclude Include="..\..\src\google\protobuf\message_lite.h" />
     <ClInclude Include="..\..\src\google\protobuf\parse_context.h" />
     <ClInclude Include="..\..\src\google\protobuf\repeated_field.h" />
+    <ClInclude Include="..\..\src\google\protobuf\repeated_ptr_field.h" />
     <ClInclude Include="..\..\src\google\protobuf\stubs\bytestream.h" />
     <ClInclude Include="..\..\src\google\protobuf\stubs\common.h" />
     <ClInclude Include="..\..\src\google\protobuf\stubs\int128.h" />
