@@ -68,7 +68,21 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ExplicitlyConstructedArenaString
         fixed_address_empty_string{};  // NOLINT
 
+#ifdef _MSC_VER
+ExplicitlyConstructedArenaString* get_fixed_address_empty_string()
+{
+    return &fixed_address_empty_string;
+}
+#endif
+
 PROTOBUF_CONSTINIT std::atomic<bool> init_protobuf_defaults_state{false};
+#ifdef _MSC_VER
+// Added by Jonathan
+PROTOBUF_EXPORT bool get_init_protobuf_defaults_state()
+{
+    return init_protobuf_defaults_state.load( std::memory_order_acquire );
+}
+#endif
 static bool InitProtobufDefaultsImpl() {
   fixed_address_empty_string.DefaultConstruct();
   OnShutdownDestroyString(fixed_address_empty_string.get_mutable());

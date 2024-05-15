@@ -61,6 +61,11 @@ class SwapFieldHelper;
 PROTOBUF_EXPORT extern ExplicitlyConstructedArenaString
     fixed_address_empty_string;
 
+#ifdef _MSC_VER
+// Added by Jonathan
+PROTOBUF_EXPORT ExplicitlyConstructedArenaString* get_fixed_address_empty_string();
+#endif
+
 // Lazy string instance to support string fields with non-empty default.
 // These are initialized on the first call to .get().
 class PROTOBUF_EXPORT LazyString {
@@ -389,7 +394,7 @@ struct PROTOBUF_EXPORT ArenaStringPtr {
 };
 
 inline void ArenaStringPtr::InitDefault() {
-  tagged_ptr_ = TaggedStringPtr(&fixed_address_empty_string);
+  tagged_ptr_ = TaggedStringPtr( get_fixed_address_empty_string() );
 }
 
 inline void ArenaStringPtr::InitExternal(const std::string* str) {

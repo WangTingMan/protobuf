@@ -130,9 +130,13 @@ inline int ToIntSize(size_t size) {
 PROTOBUF_EXPORT extern ExplicitlyConstructedArenaString
     fixed_address_empty_string;
 
+#ifdef _MSC_VER
+// Added by Jonathan
+PROTOBUF_EXPORT ExplicitlyConstructedArenaString* get_fixed_address_empty_string();
+#endif
 
 PROTOBUF_EXPORT constexpr const std::string& GetEmptyStringAlreadyInited() {
-  return fixed_address_empty_string.get();
+  return get_fixed_address_empty_string()->get();
 }
 
 PROTOBUF_EXPORT size_t StringSpaceUsedExcludingSelfLong(const std::string& str);
