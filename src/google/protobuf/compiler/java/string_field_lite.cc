@@ -77,10 +77,6 @@ void SetPrimitiveVariables(const FieldDescriptor* descriptor,
       StrCat(static_cast<int32_t>(WireFormat::MakeTag(descriptor)));
   (*variables)["tag_size"] = StrCat(
       WireFormat::TagSize(descriptor->number(), GetType(descriptor)));
-  // We use `x.getClass()` as a null check because it generates less bytecode
-  // than an `if (x == null) { throw ... }` statement.
-  (*variables)["null_check"] =
-      "  java.lang.Class<?> valueClass = value.getClass();\n";
 
   // TODO(birdo): Add @deprecated javadoc when generating javadoc is supported
   // by the proto compiler
@@ -215,9 +211,10 @@ void ImmutableStringFieldLiteGenerator::GenerateMembers(
 
   WriteFieldAccessorDocComment(printer, descriptor_, SETTER);
   printer->Print(variables_,
+                 "@java.lang.SuppressWarnings(\"ReturnValueIgnored\")\n"
                  "private void set$capitalized_name$(\n"
                  "    java.lang.String value) {\n"
-                 "$null_check$"
+                 "  value.getClass();  // minimal bytecode null check\n"
                  "  $set_has_field_bit_message$\n"
                  "  $name$_ = value;\n"
                  "}\n");
@@ -313,7 +310,7 @@ void ImmutableStringFieldLiteGenerator::GenerateKotlinDslMembers(
     io::Printer* printer) const {
   WriteFieldDocComment(printer, descriptor_);
   printer->Print(variables_,
-                 "$kt_deprecation$var $kt_name$: kotlin.String\n"
+                 "$kt_deprecation$public var $kt_name$: kotlin.String\n"
                  "  @JvmName(\"${$get$kt_capitalized_name$$}$\")\n"
                  "  get() = $kt_dsl_builder$.${$get$capitalized_name$$}$()\n"
                  "  @JvmName(\"${$set$kt_capitalized_name$$}$\")\n"
@@ -324,7 +321,7 @@ void ImmutableStringFieldLiteGenerator::GenerateKotlinDslMembers(
   WriteFieldAccessorDocComment(printer, descriptor_, CLEARER,
                                /* builder */ false);
   printer->Print(variables_,
-                 "fun ${$clear$kt_capitalized_name$$}$() {\n"
+                 "public fun ${$clear$kt_capitalized_name$$}$() {\n"
                  "  $kt_dsl_builder$.${$clear$capitalized_name$$}$()\n"
                  "}\n");
 
@@ -332,7 +329,7 @@ void ImmutableStringFieldLiteGenerator::GenerateKotlinDslMembers(
     WriteFieldAccessorDocComment(printer, descriptor_, HAZZER);
     printer->Print(
         variables_,
-        "fun ${$has$kt_capitalized_name$$}$(): kotlin.Boolean {\n"
+        "public fun ${$has$kt_capitalized_name$$}$(): kotlin.Boolean {\n"
         "  return $kt_dsl_builder$.${$has$capitalized_name$$}$()\n"
         "}\n");
   }
@@ -411,9 +408,10 @@ void ImmutableStringOneofFieldLiteGenerator::GenerateMembers(
 
   WriteFieldAccessorDocComment(printer, descriptor_, SETTER);
   printer->Print(variables_,
+                 "@java.lang.SuppressWarnings(\"ReturnValueIgnored\")\n"
                  "private void ${$set$capitalized_name$$}$(\n"
                  "    java.lang.String value) {\n"
-                 "$null_check$"
+                 "  value.getClass();  // minimal bytecode null check\n"
                  "  $set_oneof_case_message$;\n"
                  "  $oneof_name$_ = value;\n"
                  "}\n");
@@ -607,17 +605,19 @@ void RepeatedImmutableStringFieldLiteGenerator::GenerateMembers(
 
   WriteFieldAccessorDocComment(printer, descriptor_, LIST_INDEXED_SETTER);
   printer->Print(variables_,
+                 "@java.lang.SuppressWarnings(\"ReturnValueIgnored\")\n"
                  "private void set$capitalized_name$(\n"
                  "    int index, java.lang.String value) {\n"
-                 "$null_check$"
+                 "  value.getClass();  // minimal bytecode null check\n"
                  "  ensure$capitalized_name$IsMutable();\n"
                  "  $name$_.set(index, value);\n"
                  "}\n");
   WriteFieldAccessorDocComment(printer, descriptor_, LIST_ADDER);
   printer->Print(variables_,
+                 "@java.lang.SuppressWarnings(\"ReturnValueIgnored\")\n"
                  "private void add$capitalized_name$(\n"
                  "    java.lang.String value) {\n"
-                 "$null_check$"
+                 "  value.getClass();  // minimal bytecode null check\n"
                  "  ensure$capitalized_name$IsMutable();\n"
                  "  $name$_.add(value);\n"
                  "}\n");
@@ -748,14 +748,14 @@ void RepeatedImmutableStringFieldLiteGenerator::GenerateKotlinDslMembers(
       " */\n"
       "@kotlin.OptIn"
       "(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)\n"
-      "class ${$$kt_capitalized_name$Proxy$}$ private constructor()"
+      "public class ${$$kt_capitalized_name$Proxy$}$ private constructor()"
       " : com.google.protobuf.kotlin.DslProxy()\n");
 
   // property for List<String>
   WriteFieldAccessorDocComment(printer, descriptor_, LIST_GETTER);
   printer->Print(
       variables_,
-      "$kt_deprecation$ val $kt_name$: "
+      "$kt_deprecation$public val $kt_name$: "
       "com.google.protobuf.kotlin.DslList"
       "<kotlin.String, ${$$kt_capitalized_name$Proxy$}$>\n"
       "@kotlin.OptIn"
@@ -770,7 +770,7 @@ void RepeatedImmutableStringFieldLiteGenerator::GenerateKotlinDslMembers(
   printer->Print(variables_,
                  "@kotlin.jvm.JvmSynthetic\n"
                  "@kotlin.jvm.JvmName(\"add$kt_capitalized_name$\")\n"
-                 "fun com.google.protobuf.kotlin.DslList"
+                 "public fun com.google.protobuf.kotlin.DslList"
                  "<kotlin.String, ${$$kt_capitalized_name$Proxy$}$>."
                  "add(value: kotlin.String) {\n"
                  "  $kt_dsl_builder$.${$add$capitalized_name$$}$(value)\n"
@@ -783,7 +783,7 @@ void RepeatedImmutableStringFieldLiteGenerator::GenerateKotlinDslMembers(
                  "@kotlin.jvm.JvmSynthetic\n"
                  "@kotlin.jvm.JvmName(\"plusAssign$kt_capitalized_name$\")\n"
                  "@Suppress(\"NOTHING_TO_INLINE\")\n"
-                 "inline operator fun com.google.protobuf.kotlin.DslList"
+                 "public inline operator fun com.google.protobuf.kotlin.DslList"
                  "<kotlin.String, ${$$kt_capitalized_name$Proxy$}$>."
                  "plusAssign(value: kotlin.String) {\n"
                  "  add(value)\n"
@@ -796,7 +796,7 @@ void RepeatedImmutableStringFieldLiteGenerator::GenerateKotlinDslMembers(
       variables_,
       "@kotlin.jvm.JvmSynthetic\n"
       "@kotlin.jvm.JvmName(\"addAll$kt_capitalized_name$\")\n"
-      "fun com.google.protobuf.kotlin.DslList"
+      "public fun com.google.protobuf.kotlin.DslList"
       "<kotlin.String, ${$$kt_capitalized_name$Proxy$}$>."
       "addAll(values: kotlin.collections.Iterable<kotlin.String>) {\n"
       "  $kt_dsl_builder$.${$addAll$capitalized_name$$}$(values)\n"
@@ -810,7 +810,7 @@ void RepeatedImmutableStringFieldLiteGenerator::GenerateKotlinDslMembers(
       "@kotlin.jvm.JvmSynthetic\n"
       "@kotlin.jvm.JvmName(\"plusAssignAll$kt_capitalized_name$\")\n"
       "@Suppress(\"NOTHING_TO_INLINE\")\n"
-      "inline operator fun com.google.protobuf.kotlin.DslList"
+      "public inline operator fun com.google.protobuf.kotlin.DslList"
       "<kotlin.String, ${$$kt_capitalized_name$Proxy$}$>."
       "plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {\n"
       "  addAll(values)\n"
@@ -823,7 +823,7 @@ void RepeatedImmutableStringFieldLiteGenerator::GenerateKotlinDslMembers(
       variables_,
       "@kotlin.jvm.JvmSynthetic\n"
       "@kotlin.jvm.JvmName(\"set$kt_capitalized_name$\")\n"
-      "operator fun com.google.protobuf.kotlin.DslList"
+      "public operator fun com.google.protobuf.kotlin.DslList"
       "<kotlin.String, ${$$kt_capitalized_name$Proxy$}$>."
       "set(index: kotlin.Int, value: kotlin.String) {\n"
       "  $kt_dsl_builder$.${$set$capitalized_name$$}$(index, value)\n"
@@ -834,7 +834,7 @@ void RepeatedImmutableStringFieldLiteGenerator::GenerateKotlinDslMembers(
   printer->Print(variables_,
                  "@kotlin.jvm.JvmSynthetic\n"
                  "@kotlin.jvm.JvmName(\"clear$kt_capitalized_name$\")\n"
-                 "fun com.google.protobuf.kotlin.DslList"
+                 "public fun com.google.protobuf.kotlin.DslList"
                  "<kotlin.String, ${$$kt_capitalized_name$Proxy$}$>."
                  "clear() {\n"
                  "  $kt_dsl_builder$.${$clear$capitalized_name$$}$()\n"
