@@ -42,9 +42,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
-    <EnableASAN>false</EnableASAN>
+    <EnableASAN>true</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -72,7 +72,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)..\..\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\..\src;$(ProjectDir)..\..\../system\external\abseil-cpp;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(ProjectDir)..\..\src;$(IncludePath)</IncludePath>
@@ -152,23 +152,56 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\allowlists\editions.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\allowlists\empty_package.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\allowlists\open_enum.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\allowlists\unused_imports.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\allowlists\weak_imports.cc" />
     <ClCompile Include="..\..\src\google\protobuf\compiler\code_generator.cc" />
     <ClCompile Include="..\..\src\google\protobuf\compiler\command_line_interface.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\enum.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\enum_field.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\extension.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\field.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\file.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\generator.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\helpers.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\map_field.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\message.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\message_field.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\enum.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/cpp/enum.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\extension.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/cpp/extension.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\field.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/cpp/field.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\field_generators\cord_field.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\field_generators\enum_field.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/cpp/field_generators/enum_field.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\field_generators\map_field.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/cpp/field_generators/map_field.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\field_generators\message_field.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/cpp/field_generators/message_field.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\field_generators\primitive_field.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/cpp/field_generators/primitive_field.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\field_generators\string_field.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/cpp/field_generators/string_field.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\file.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/cpp/file.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\generator.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/cpp/generator.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\helpers.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/cpp/helpers.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\message.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/cpp/message.cc.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\padding_optimizer.cc" />
     <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\parse_function_generator.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\primitive_field.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\service.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\string_field.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\service.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/cpp/service.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\cpp\tracker.cc" />
     <ClCompile Include="..\..\src\google\protobuf\compiler\csharp\csharp_doc_comment.cc" />
     <ClCompile Include="..\..\src\google\protobuf\compiler\csharp\csharp_enum.cc" />
     <ClCompile Include="..\..\src\google\protobuf\compiler\csharp\csharp_enum_field.cc" />
@@ -185,78 +218,171 @@
     <ClCompile Include="..\..\src\google\protobuf\compiler\csharp\csharp_repeated_primitive_field.cc" />
     <ClCompile Include="..\..\src\google\protobuf\compiler\csharp\csharp_source_generator_base.cc" />
     <ClCompile Include="..\..\src\google\protobuf\compiler\csharp\csharp_wrapper_field.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\java\context.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\csharp\names.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/csharp/names.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\java\context.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/java/context.cc.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="..\..\src\google\protobuf\compiler\java\doc_comment.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\java\enum.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\java\enum_field.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\java\enum.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/java/enum.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\java\enum_field.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/java/enum_field.cc.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="..\..\src\google\protobuf\compiler\java\enum_field_lite.cc" />
     <ClCompile Include="..\..\src\google\protobuf\compiler\java\enum_lite.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\java\extension.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\java\extension.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/java/extension.cc.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="..\..\src\google\protobuf\compiler\java\extension_lite.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\java\field.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\java\file.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\java\generator.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\java\field.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/java/field.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\java\file.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/java/file.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\java\generator.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/java/generator.cc.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="..\..\src\google\protobuf\compiler\java\generator_factory.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\java\helpers.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\java\helpers.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/java/helpers.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\java\java_features.pb.cc" />
     <ClCompile Include="..\..\src\google\protobuf\compiler\java\kotlin_generator.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\java\map_field.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\java\map_field.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/java/map_field.cc.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="..\..\src\google\protobuf\compiler\java\map_field_lite.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\java\message.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\java\message.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/java/message.cc.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="..\..\src\google\protobuf\compiler\java\message_builder.cc" />
     <ClCompile Include="..\..\src\google\protobuf\compiler\java\message_builder_lite.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\java\message_field.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\java\message_field.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/java/message_field.cc.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="..\..\src\google\protobuf\compiler\java\message_field_lite.cc" />
     <ClCompile Include="..\..\src\google\protobuf\compiler\java\message_lite.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\java\message_serialization.cc" />
     <ClCompile Include="..\..\src\google\protobuf\compiler\java\name_resolver.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\java\primitive_field.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\java\names.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/java/names.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\java\primitive_field.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/java/primitive_field.cc.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="..\..\src\google\protobuf\compiler\java\primitive_field_lite.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\java\service.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\java\service.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/java/service.cc.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="..\..\src\google\protobuf\compiler\java\shared_code_generator.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\java\string_field.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\java\string_field.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/java/string_field.cc.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="..\..\src\google\protobuf\compiler\java\string_field_lite.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_enum.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_enum_field.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_extension.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_field.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_file.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_generator.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_helpers.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_map_field.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_message.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_message_field.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_oneof.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_primitive_field.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\enum.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/objectivec/enum.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\enum_field.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/objectivec/enum_field.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\extension.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/objectivec/extension.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\field.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/objectivec/field.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\file.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/objectivec/file.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\generator.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/objectivec/generator.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\helpers.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/objectivec/helpers.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\import_writer.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\line_consumer.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\map_field.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/objectivec/map_field.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\message.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/objectivec/message.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\message_field.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/objectivec/message_field.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\names.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/objectivec/names.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\oneof.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/objectivec/oneof.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\primitive_field.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/objectivec/primitive_field.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\objectivec\text_format_decode_data.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\php\names.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/php/names.cc.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="..\..\src\google\protobuf\compiler\php\php_generator.cc" />
     <ClCompile Include="..\..\src\google\protobuf\compiler\plugin.cc" />
     <ClCompile Include="..\..\src\google\protobuf\compiler\plugin.pb.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\python\generator.cc" />
-    <ClCompile Include="..\..\src\google\protobuf\compiler\python\helpers.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\python\generator.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/python/generator.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\python\helpers.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/python/helpers.cc.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="..\..\src\google\protobuf\compiler\python\pyi_generator.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\retention.cc" />
     <ClCompile Include="..\..\src\google\protobuf\compiler\ruby\ruby_generator.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\rust\accessors\accessors.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\rust\accessors\singular_message.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\rust\accessors\singular_scalar.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\rust\accessors\singular_string.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\rust\accessors\unsupported_field.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\rust\context.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/rust/context.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\rust\generator.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/rust/generator.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\rust\message.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/rust/message.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\rust\naming.cc" />
+    <ClCompile Include="..\..\src\google\protobuf\compiler\rust\oneof.cc">
+      <ObjectFileName>$(IntDir)src/google/protobuf/compiler/rust/oneof.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\google\protobuf\compiler\rust\relative_path.cc" />
     <ClCompile Include="..\..\src\google\protobuf\compiler\subprocess.cc" />
     <ClCompile Include="..\..\src\google\protobuf\compiler\zip_writer.cc" />
     <ClCompile Include="dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\google\protobuf\compiler\allowlists\allowlist.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\allowlists\allowlists.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\code_generator.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\command_line_interface.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\cpp_enum.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\cpp_enum_field.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\cpp_extension.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\cpp_field.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\cpp_file.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\cpp_generator.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\cpp_helpers.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\cpp_map_field.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\cpp_message.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\cpp_message_field.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\cpp_message_layout_helper.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\cpp_options.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\cpp_padding_optimizer.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\cpp_primitive_field.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\cpp_service.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\cpp_string_field.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\enum.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\extension.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\field.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\field_generators\generators.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\file.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\generator.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\helpers.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\message.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\message_layout_helper.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\names.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\options.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\padding_optimizer.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\parse_function_generator.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\service.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\cpp\tracker.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\csharp\csharp_doc_comment.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\csharp\csharp_enum.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\csharp\csharp_enum_field.h" />
@@ -266,7 +392,6 @@
     <ClInclude Include="..\..\src\google\protobuf\compiler\csharp\csharp_map_field.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\csharp\csharp_message.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\csharp\csharp_message_field.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\csharp\csharp_names.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\csharp\csharp_options.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\csharp\csharp_primitive_field.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\csharp\csharp_reflection_class.h" />
@@ -275,59 +400,79 @@
     <ClInclude Include="..\..\src\google\protobuf\compiler\csharp\csharp_repeated_primitive_field.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\csharp\csharp_source_generator_base.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\csharp\csharp_wrapper_field.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_context.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_doc_comment.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_enum.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_enum_field.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_enum_field_lite.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_enum_lite.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_extension.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_extension_lite.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_field.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_file.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_generator.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_generator_factory.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_helpers.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_map_field.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_map_field_lite.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_message.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_message_builder.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_message_builder_lite.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_message_field.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_message_field_lite.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_message_lite.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_names.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_name_resolver.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_options.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_primitive_field.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_primitive_field_lite.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_service.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_shared_code_generator.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_string_field.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_string_field_lite.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\js\well_known_types_embed.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_enum.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_enum_field.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_extension.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_field.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_file.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_generator.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_helpers.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_map_field.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_message.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_message_field.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_nsobject_methods.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_oneof.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\objectivec_primitive_field.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\csharp\names.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\context.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\doc_comment.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\enum.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\enum_field.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\enum_field_lite.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\enum_lite.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\extension.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\extension_lite.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\field.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\file.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\generator.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\generator_factory.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\helpers.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\java_features.pb.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\kotlin_generator.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\map_field.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\map_field_lite.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\message.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\message_builder.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\message_builder_lite.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\message_field.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\message_field_lite.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\message_lite.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\message_serialization.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\name_resolver.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\names.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\options.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\primitive_field.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\primitive_field_lite.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\service.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\shared_code_generator.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\string_field.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\java\string_field_lite.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\enum.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\enum_field.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\extension.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\field.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\file.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\generator.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\helpers.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\import_writer.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\line_consumer.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\map_field.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\message.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\message_field.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\names.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\nsobject_methods.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\oneof.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\options.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\primitive_field.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\objectivec\text_format_decode_data.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\php\names.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\php\php_generator.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\plugin.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\plugin.pb.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\python\generator.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\python\helpers.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\python\pyi_generator.h" />
-    <ClInclude Include="..\..\src\google\protobuf\compiler\python\python_generator.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\retention.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\ruby\ruby_generator.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\rust\accessors\accessor_generator.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\rust\accessors\accessors.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\rust\context.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\rust\generator.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\rust\message.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\rust\naming.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\rust\oneof.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\rust\relative_path.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\scc.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\subprocess.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\versions.h" />
+    <ClInclude Include="..\..\src\google\protobuf\compiler\versions_suffix.h" />
     <ClInclude Include="..\..\src\google\protobuf\compiler\zip_writer.h" />
   </ItemGroup>
   <ItemGroup>

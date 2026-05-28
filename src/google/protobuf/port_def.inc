@@ -467,14 +467,6 @@ static_assert(PROTOBUF_ABSL_MIN(20230125, 3),
 #error PROTOBUF_EXPORT was previously defined
 #endif
 
-// Android local modification: always compile in DLL mode on Windows.
-// This has no effect when linking statically, but prevents exporting
-// a thread-local variable across DLL boundary when linking dynamically,
-// which is unsupported on Windows.
-#ifdef _WIN32
-#define PROTOBUF_USE_DLLS 1
-#endif
-
 #if defined(PROTOBUF_USE_DLLS) && defined(_MSC_VER)
 # if defined(LIBPROTOBUF_EXPORTS)
 #  define PROTOBUF_EXPORT __declspec(dllexport)
